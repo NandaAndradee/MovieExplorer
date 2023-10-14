@@ -5,7 +5,7 @@ using MovieExplorer.Web.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<MovieContext>(options => 
-    options.UseSqlite(builder.Configuration.GetConnectionString("SqlIteConnection"))
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerConnection"))
 );
 
 // Add services to the container.

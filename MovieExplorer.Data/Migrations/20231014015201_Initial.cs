@@ -5,17 +5,20 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MovieExplorer.Data.Migrations
 {
+    /// <inheritdoc />
     public partial class Initial : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
                 name: "movies",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    name = table.Column<string>(type: "TEXT", nullable: false),
-                    description = table.Column<string>(type: "TEXT", nullable: false)
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    title = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false),
+                    original_title = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false),
+                    description = table.Column<string>(type: "varchar(400)", maxLength: 400, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -23,6 +26,7 @@ namespace MovieExplorer.Data.Migrations
                 });
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
