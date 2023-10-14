@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<MovieViewModel>
+
+<form method="post" asp-action="Index">
+    <div class="row">
+
+        <div class="col-3">
+            <input type="text" id="edtPesquisa" placeholder="Nome do filme" name="movieName" />
+        </div>
+        <div class="col-1">
+            <input type="submit" value="Pesquisar" id="btnPesquisar" />
+        </div>
+
+    </div>
+</form>
+<div class="row">
+    <table class="table table-striped" id="tblDados" style="width:100%">
+        <thead>
+            <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                <th class="min-w-125px">
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th class="min-w-125px">
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    Ações
+                </th>
+            </tr>
+        </thead>
+        <!--begin::Table body-->
+        <tbody class="text-gray-600 fw-semibold">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="menu-link px-3">Visualizar</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+        <!--end::Table body-->
+    </table>
+
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            initMoviesTable();
+        });
+    </script>
+        }
